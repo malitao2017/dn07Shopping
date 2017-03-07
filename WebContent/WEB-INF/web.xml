@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>dn07Shopping</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- ServletContext 应用容器 全局初始化参数 -->
+  <context-param>
+  	<param-name>version</param-name>
+  	<param-value>1.0</param-value>
+  </context-param>
+  
+  <!-- listener 监听器 -->
+  <listener>
+  	<listener-class>listener.ListenerTest</listener-class>
+  </listener>
+  
+  <!-- filter 过滤器 -->
+  <filter>
+  	<filter-name>filterUpdate</filter-name>
+  	<filter-class>filter.FilterTest</filter-class>
+  	<init-param>
+  		<param-name>param</param-name>
+  		<param-value>你好</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>filterUpdate</filter-name>
+  	<url-pattern>/update.do</url-pattern>
+  </filter-mapping>
+  
+  <!-- servlet 业务跳转 ：文件上传功能-->
+  <servlet>
+  	<servlet-name>fileupload</servlet-name>
+  	<servlet-class>fileupload.FileUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>fileupload</servlet-name>
+  	<url-pattern>/fileupload</url-pattern>
+  </servlet-mapping>
+  
+  <!-- servlet 业务跳转：购物车 -->
+  <servlet>
+  	<servlet-name>ActionServlet</servlet-name>
+  	<servlet-class>web.ActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ActionServlet</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
